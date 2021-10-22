@@ -10,4 +10,8 @@ def home(request):
 
     context={"awards":allAwardsDetails}
     return render (request, 'main/index.html', context)
-  
+# another logic to access all details 
+def detail(request, id):
+    projects=Award.objects.get(id=id)
+    context={"project":projects}
+    return render(request,'main/details.html',context)
