@@ -7,5 +7,7 @@ from .models import *
 def home(request):
     # accessing all details from the database created on models files
     allAwardsDetails=Award.objects.all()
-    return render (request, 'main/index.html')
+
+    context={"awards":allAwardsDetails}
+    return render (request, 'main/index.html', context)
   
