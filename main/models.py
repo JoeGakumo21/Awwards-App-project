@@ -4,10 +4,10 @@ from django.db import models
 # creating database tables and it attributes
 class Award(models.Model):
     name=models.CharField(max_length=300)
-    description=models.TextField(max_length=5000)
+    description=models.TextField(max_length=5000)     
+    developer=models.CharField(max_length=300)
     created_date=models.DateField()
     averangeRating=models.FloatField()
-    developer=models.CharField(max_length=300)
 
 
     def __str__(self):
