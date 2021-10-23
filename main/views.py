@@ -31,3 +31,10 @@ def  add_project(request):
     else:
         form=UploadProjectForm()
     return render(request, "main/addproject.html",{"form":form})            
+
+# editing individaul project details
+def edit_project(request, id):
+    # getting the project linked id
+    individualproject=Award.objects.get(id=id)
+
+    if request.method=
