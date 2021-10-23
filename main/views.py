@@ -46,4 +46,13 @@ def edit_project(request, id):
             return redirect("main:detail",id)
     else:
         form=UploadProjectForm(instance=individualproject)
-    return render(request,'main/addproject.html',{"form":form})    
+    return render(request,'main/addproject.html',{"form":form}) 
+
+
+# function for deleting the project
+def deleteproject(request, id):
+    projectname=Award.objects.get(id=id)
+    projectname.delete()
+    return redirect("main:home")
+
+
