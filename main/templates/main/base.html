@@ -42,19 +42,20 @@
               </a>  
             </div>
           </div>
-      
+          {% if user.is_authenticated %}
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">
-                  Log in
+                <h5 class="text-danger mr-5">
+                   Welcome back, <span style="color: green;font-family: monospace;font: italic;font-size: xx-large;">{{user.username}}</span>
+                  </h5>
+                <a href="{% url 'accounts:logout' %}" class="button is-light">
+                  Logout
                 </a>
               </div>
             </div>
           </div>
+          {% endif %}
         </div>
       </nav>
        
