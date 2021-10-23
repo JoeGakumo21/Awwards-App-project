@@ -36,5 +36,14 @@ def  add_project(request):
 def edit_project(request, id):
     # getting the project linked id
     individualproject=Award.objects.get(id=id)
-
-    if request.method=
+# checking the form
+    if request.method=="POST":
+        form=UploadProjectForm(request.POST or None, instance=individualproject)
+# check if form is valid
+        if form.is_valid():
+            data=form.save(commit=False)
+            data.save()
+            return redirect("main:detail",id)
+    else:
+        form=UploadProjectForm(instance=individualproject)
+    return render(request,'main/addproject.html',{"form":form})    
