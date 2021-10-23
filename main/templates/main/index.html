@@ -118,7 +118,7 @@
           <div class="row">
           {% for award in awards %}
           
-          <div id="app" class="row columns is-multiline">
+          <div id="app" class="row columns is-multiline is-half">
               
             <div v-for="card in cardData" key="card.id" class="column is-4">
               <div class="card large">
@@ -131,7 +131,7 @@
                   <div class="media">
                     <div class="media-left">
                       <figure class="image is-48x48">
-                        <img src="{{award.image}}" alt="img-fluid">
+                        <img src="{{award.image}}" alt="img-fluid" width="75%">
                       </figure>
                     </div>
                     <div class="media-content">
