@@ -13,19 +13,20 @@
     <script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="static/css/hello-parallax.css">
+    <link rel="stylesheet" type="text/css" href="static/css/cards.css">
   </head>
 
   <body>
     <section class="hero is-medium">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title is-1 ">All Projects Developed by Joe Gakumo</h1>
+          <h1 class="title is-1 ">Welcome to JoeKumsy Awwards Site</h1>
          
-          {% for award in awards %}
+          <!-- {% for award in awards %}
           <p class="title is-1 ">{{award.name}}</p>
           <p>{{award.description}} </p>
           <a href="{% url 'main:detail' award.id %}">Access the cite</a>
-          {% endfor %}
+          {% endfor %} -->
           <a href="#" class="button is-white is-medium is-inverted">Learn More&ensp;<i class="fad fa-chevron-right"></i></a>
         </div>
       </div>
@@ -106,6 +107,56 @@
       </div>
 
     </section>
+    <!-- ==================== cardcardcccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaarrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrddddddddddddddddddddds-->
+    <div class="container">
+        <div class="row">
+          <div class="columns">
+            <div class="column has-text-centered">
+              <h1 class="title" style="color: ghostwhite;">Bulma Card Layout Template</h1><br>
+            </div>
+          </div>
+          <div class="row">
+          {% for award in awards %}
+          
+          <div id="app" class="row columns is-multiline">
+              
+            <div v-for="card in cardData" key="card.id" class="column is-4">
+              <div class="card large">
+                <div class="card-image">
+                  <figure class="image is-16by9">
+                    <img src="{{award.image}}" alt="Image" class="img-fluid">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <img src="{{award.image}}" alt="img-fluid">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4 no-padding">{{award.developer}}</p>
+                      <p>
+                        <span class="title is-6">
+                          <a href="{% url 'main:detail' award.id %}"> {{award.name}} </a> </span> </p>
+                      <p class="subtitle is-6">{{award.}}</p>
+                    </div>
+                  </div>
+                  <div class="content">
+                    {{award.description}}
+                    <div class="background-icon"><span class="icon-twitter"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor%}
+        </div>
+        </div>
+      </div>
+      
+    <!-- ================ rddddddddddddddddddddscccccccccccccccccccccccccccccccasasasmjnaA,DKJ-->
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
@@ -116,33 +167,16 @@
       </div>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-// Get all "navbar-burger" elements
-const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-// Check if there are any navbar burgers
-if ($navbarBurgers.length > 0) {
-
-  // Add a click event on each of them
-  $navbarBurgers.forEach( el => {
-    el.addEventListener('click', () => {
-
-      // Get the target from the "data-target" attribute
-      const target = el.dataset.target;
-      const $target = document.getElementById(target);
-
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      el.classList.toggle('is-active');
-      $target.classList.toggle('is-active');
-
-    });
-  });
-}
-
-});
-    </script>
-  </body>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            cardData: cardsData
+          }
+        })
+  
+      </script>
+      
+    </body>
 
 </html>
 

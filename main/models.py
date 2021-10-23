@@ -8,6 +8,8 @@ class Award(models.Model):
     developer=models.CharField(max_length=300)
     created_date=models.DateField()
     averangeRating=models.FloatField()
+    image=models.URLField(default=None, null=True)
+    linktosite=models.URLField(default=None, null=True)
    
 
 
