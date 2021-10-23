@@ -9,14 +9,32 @@
 
 <div class="container">
     <div class="card-body">
-    <div class="card mb-3" style="min-width: 540px;">
-        <div class="row g-0">           
-        <div class="col-md-8">
-           <h3 class="text-center">Upload a Project</h3>
+    
+    <div class="card mb-3">
+        <div class="row g-0">  
+            <h3 class="text-center m-1">Upload a Project</h3>
+            <hr>
+            <div class="col-md-4">
+                <h6 class="text-center">Project Details</h6>      
+                <hr> 
+                <p class="m-2"> Welcome to <strong>Project review website</strong> where you upload your project and the it can be rated by different users who access the website </p>
+                <p class="m-3"><strong style="color: red;">Kindly follow the steps below to upload the project successfully</strong></p>
+                <ol>
+                    <li>Add the project Name in the field <strong style="color: red;">Name</strong></li>
+                    <li>Add the project Description in the field <strong style="color: red;">Description</strong></li>
+                    <li>Add the name of the developer in the field <strong style="color: red;">Developer</strong></li>
+                    <li>Add the date when the project was created in this format<strong style="color: red;"> YYYYMMDD</strong> the field <strong style="color: red;"> Created date</strong></li>
+                    <li>Add the project <strong style="color: red;">Image URL</strong> in the field <strong style="color: red;">Image</strong></li>
+                    <li>Add the project Live Link in the field <strong style="color: red;">Linktosite</strong></li>
+                </ol>
+            </div>         
+        <div class="col-md-7" style="border-left:2px solid grey; margin-right: 5px;">
+          
         <form action="" method="POST">
             {% csrf_token %}
             {{form.as_p}}
-            <input type="submit" name="" id="" class="btn btn-small-primary" value="Upload New Project">
+            <input type="submit" name="" id="" class="btn btn-small-primary btn-primary form-control" value="Upload New Project">
+
         </form>
         </div>
         </div>
