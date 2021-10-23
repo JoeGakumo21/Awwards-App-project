@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import *
 from .forms import *
@@ -15,3 +15,19 @@ def detail(request, id):
     projects=Award.objects.get(id=id)
     context={"project":projects}
     return render(request,'main/details.html',context)
+
+
+ #add new projects to database  and post it
+def  add_project(request):
+    if request.method=="POST":
+        form=UploadProjectForm(request.POST or None)
+
+
+        # checking if the form is valid
+        if form.is_valid():
+            data=form.save(commit=False)
+            data.save()
+            return redirect ("main:home")
+    else:
+        form=UploadProjectForm()
+    return render(request, "main/addproject.html",{"form":form})            
