@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
-
+from .forms import *
 # Create your views here.
 # main logic
 def home(request):
