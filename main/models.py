@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
+from django.contrib.auth.models import User 
 
 # Create your models here.
 # creating database tables and it attributes
@@ -15,3 +17,13 @@ class Award(models.Model):
 
     def __str__(self):
         return self.name
+
+class ProjectReview(models.Model):
+    project=models.ForeignKey(Award, on_delete=models.CASCADE)
+    user=models.ForeignKey(User, on_delete=CASCADE)
+    comments=models.TextField(max_length=1500)
+    rating=models.FloatField(default=0)
+
+
+    def __str__(self):
+        return self.user.username
