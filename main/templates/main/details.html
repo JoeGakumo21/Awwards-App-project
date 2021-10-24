@@ -35,7 +35,7 @@
             <span><a href="{{project.linktosite}}">Access the site</a></span></p>
             <p class="card-text"><small class="text"><span  style="font-weight: 800;font-size: 20px;">Created on :</span>{{project.created_date}}</small></p>
             <p class="card-text"><small class="text"><span  style="font-weight: 800;font-size: 20px;">Averange Rating Project:</span> {{averange}}</small></p>
-            <a href="{% url 'main:home' %}" class="btn btn-success">All Project</a>
+            <a href="{% url 'main:home' %}" class="btn btn-success">Back Home</a>
             {% if request.user.is_authenticated %}
             <a href="{% url 'main:edit_project' project.id %}" class="btn btn-warning">Edit Project</a>
             <a href="{% url 'main:deleteproject' project.id %}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this?')">Delete Project</a>
