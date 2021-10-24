@@ -67,3 +67,23 @@ def deleteproject(request, id):
             return redirect("main:home")
     return redirect("accounts:login")
 
+
+# function to commit comments and rating
+def add_review(request,id):
+    if request.user.is_authenticated:
+        project=Award.objects.get(id=id)
+        if request.method =="POST":
+            form=ProjectReviewForm(request.POST or None)
+            if form.is_valid():
+                data=form.save(commit=False)
+                data.comments=request.POST["comments"]
+                data.rating=request.POST["rating"]
+                data.user=request.user
+                data.project=project
+                data.save()
+                return redirect("main:details", id)
+        else:
+            form=ProjectReviewForm()  
+        return render(request,'main/details.html', {"form":form})
+    else:
+        return redirect("accounts:login")              
