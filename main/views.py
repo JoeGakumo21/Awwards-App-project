@@ -109,3 +109,19 @@ def edit_review(request, project_id, review_id):
             return render(request,'main/editreview.html', {"form":form})
         else:
          return redirect("accounts:login")                
+# delete review
+def delete_review(request, project_id, review_id):
+    if request.user.is_authenticated:
+        project=Award.objects.get(id=project_id)
+        review=Review.objects.get(project=project, id=review_id)
+
+        # check if the review was done by looged in user
+        if request.user == review.user:
+            # grant user to review
+           review.delete()
+        return redirect("main:detail", project_id)
+       
+    else:
+        return redirect("accounts:login")                
+
+

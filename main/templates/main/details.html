@@ -69,7 +69,8 @@
                             <h5 class="text-left">Reviewer: {{review.user.username}}</h5>
                             <h5>Rating: {{review.rating}}</h5>
                             {% if request.user == review.user %}
-                            <a href="{% url 'main:edit_review' project.id review.id %}">Edit Review</a>
+                            <a href="{% url 'main:edit_review' project.id review.id %}" class="btn btn-success">Edit Review</a>
+                            <a href="{% url 'main:delete_review' project.id review.id %}" class="btn btn-danger">Delete</a>
                             {% endif %}
                         </div>
                         <div class="col-md-9">
