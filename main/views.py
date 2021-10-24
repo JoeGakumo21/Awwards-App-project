@@ -13,7 +13,8 @@ def home(request):
 # another logic to access all details 
 def detail(request, id):
     projects=Award.objects.get(id=id)
-    context={"project":projects}
+    reviews=ProjectReview.objects.filter(project=id)
+    context={"project":projects, "review":reviews}
     return render(request,'main/details.html',context)
 
 

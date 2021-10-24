@@ -10,4 +10,5 @@ class UploadProjectForm(forms.ModelForm):
 
 class ProjectReviewForm(forms.ModelForm):
     class Meta:
+        models=ProjectReview
         fields=('comments','rating')        

@@ -41,6 +41,29 @@
         </div>
         </div>
     </div>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="text-center">Review Project</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="commment">Review:</label>
+                <textarea name="" id="" cols="30" rows="5" name="comment" class="form-control"></textarea>
+                <label for="rating">Rating:</label>
+                <input type="text" name="rating" id="" class="form-control">
+                <br>
+                <input type="submit" name="" id="" class="btn btn-danger" value="Review Project">
+
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            {% for review in reviews %}
+
+            <li>{{review.comment}}<i>{{review.user}}</i></li>
+            {% endfor %}
+        </div>
+    </div>
     </div>
 </div>
 {% endblock %}
