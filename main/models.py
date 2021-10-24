@@ -18,10 +18,10 @@ class Award(models.Model):
     def __str__(self):
         return self.name
 
-class ProjectReview(models.Model):
+class Review(models.Model):
     project=models.ForeignKey(Award, on_delete=models.CASCADE)
     user=models.ForeignKey(User, on_delete=CASCADE)
-    comments=models.TextField(max_length=1500)
+    comment=models.TextField(max_length=1500)
     rating=models.FloatField(default=0)
 
 

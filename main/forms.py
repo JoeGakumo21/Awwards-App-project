@@ -8,7 +8,7 @@ class UploadProjectForm(forms.ModelForm):
         model=Award
         fields=('name','description','developer','created_date','image','linktosite')
 
-class ProjectReviewForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
-        models=ProjectReview
-        fields=('comments','rating')        
+        model=Review
+        fields=("comment","rating")        

@@ -13,8 +13,8 @@ def home(request):
 # another logic to access all details 
 def detail(request, id):
     projects=Award.objects.get(id=id)
-    reviews=ProjectReview.objects.filter(project=id)
-    context={"project":projects, "review":reviews}
+    reviews=Review.objects.filter(project=id).order_by("comment")
+    context={"project":projects, "reviews":reviews}
     return render(request,'main/details.html',context)
 
 
@@ -70,21 +70,42 @@ def deleteproject(request, id):
 
 
 # function to commit comments and rating
-def add_review(request,id):
+def add_review(request, id):
     if request.user.is_authenticated:
         project=Award.objects.get(id=id)
-        if request.method =="POST":
-            form=ProjectReviewForm(request.POST or None)
+        if request.method == "POST":
+            form=ReviewForm(request.POST or None)
             if form.is_valid():
                 data=form.save(commit=False)
-                data.comments=request.POST["comments"]
+                data.comment=request.POST["comment"]
                 data.rating=request.POST["rating"]
                 data.user=request.user
                 data.project=project
                 data.save()
-                return redirect("main:details", id)
+                return redirect("main:detail", id)
         else:
-            form=ProjectReviewForm()  
+            form=ReviewForm()  
         return render(request,'main/details.html', {"form":form})
     else:
         return redirect("accounts:login")              
+
+ #logic to delete a comment
+def edit_review(request, project_id, review_id):
+    if request.user.is_authenticated:
+        project=Award.objects.get(id=project_id)
+        review=Review.objects.get(project=project, id=review_id)
+
+        # check if the review was done by looged in user
+        if request.user == review.user:
+            # grant user to review
+            if request.method== "POST":
+                form=ReviewForm(request.POST, instance=review)
+                if form.is_valid():
+                    data= form.save(commit=False)
+                    data.save()
+                    return redirect("main:detail", project_id) 
+            else:
+                form=ReviewForm(instance=review)
+            return render(request,'main/editreview.html', {"form":form})
+        else:
+         return redirect("accounts:login")                
