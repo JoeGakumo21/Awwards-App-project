@@ -5,6 +5,7 @@ from .forms import *
 from django.db.models import Avg, query
 # Create your views here.
 # main logic
+
 def home(request):
     # get the project
     query=request.GET.get("title")

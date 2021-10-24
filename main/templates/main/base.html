@@ -35,14 +35,10 @@
           </a>
         </div>
       
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="navbarBasicExample" class="navbar-menu"  style="background-color: #03152b;">
           <div class="navbar-start" style="background-color: #03152b;">
             <a href="{% url 'main:home' %}" class="navbar-item" style="text-decoration: none;">
               Home
-            </a>
-      
-            <a class="navbar-item"  style="text-decoration: none;">
-              Documentation
             </a>
       
             <div class="navbar-item ">
@@ -60,9 +56,7 @@
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           
-          </div>
-       
-
+          </div>      
           {% if user.is_authenticated %}
           <div class="navbar-end" style="background-color: #03152b;">
             <div class="navbar-item">
