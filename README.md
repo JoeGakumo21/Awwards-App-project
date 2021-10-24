@@ -38,7 +38,7 @@ This is a Project Review  web application to showcase different projects develop
 - Bulma
 
 ### live link
-<a href="">Awward Project Review site</a>
+<a href="https://awwardpro7.herokuapp.com/">Awward Project Review site</a>
 ## Know bugs
 there are no bugs so far
 # LICENCE 
