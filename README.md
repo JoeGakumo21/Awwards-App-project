@@ -1,4 +1,4 @@
-# Instagram Clone App
+# Awwards-App-project 
 ## Description
 This is a Project Review  web application to showcase different projects developed and designed by <a href="#">Joseph Gakumo Munyui </a> since when he joined in Moringa School. The application allows one to add a review and a comment as long as you are signed in, it allows the loggined in user to add another project of preference, edit commit and rating  but cannot delete the project posted. Only the admin can delete the project
 
