@@ -2,11 +2,18 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+from django.db.models import Avg, query
 # Create your views here.
 # main logic
 def home(request):
+    # get the project
+    query=request.GET.get("title")
+    allAwardsDetails=None
+    if query:
+         allAwardsDetails=Award.objects.filter(name__icontains=query)
+    else:    
     # accessing all details from the database created on models files
-    allAwardsDetails=Award.objects.all()
+        allAwardsDetails=Award.objects.all()
 
     context={"awards":allAwardsDetails}
     return render (request, 'main/index.html', context)
@@ -14,7 +21,12 @@ def home(request):
 def detail(request, id):
     projects=Award.objects.get(id=id)
     reviews=Review.objects.filter(project=id).order_by("comment")
-    context={"project":projects, "reviews":reviews}
+
+    averange=reviews.aggregate(Avg("rating"))["rating__avg"]
+    averange=round(averange, 2)
+    if averange == None:
+        averange=0
+    context={"project":projects, "reviews":reviews,"averange":averange}
     return render(request,'main/details.html',context)
 
 
@@ -102,8 +114,14 @@ def edit_review(request, project_id, review_id):
                 form=ReviewForm(request.POST, instance=review)
                 if form.is_valid():
                     data= form.save(commit=False)
-                    data.save()
-                    return redirect("main:detail", project_id) 
+                    # adding limit for rating
+                    if (data.rating >10) or (data.rating <0):
+                        error = "Out of range. Please select rating from  0 to 10"
+                        return render(request, "main/editreview.html", {"error":error, "form":form})
+                    else:    
+                    # ===
+                        data.save()
+                        return redirect("main:detail", project_id) 
             else:
                 form=ReviewForm(instance=review)
             return render(request,'main/editreview.html', {"form":form})
